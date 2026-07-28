@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { login } from "../../services/authService";
 
 type LoginForm = {
   email: string;
@@ -13,9 +14,17 @@ export default function Login() {
     formState: { errors },
   } = useForm<LoginForm>();
 
-  const onSubmit = (data: LoginForm) => {
-    console.log(data);
-  };
+  const onSubmit = async (data: LoginForm) => {
+  try {
+    const response = await login(data);
+
+    localStorage.setItem("token", response.data.token);
+
+    alert("Login Success");
+  } catch (error) {
+    alert("Invalid Credentials");
+  }
+};
 
   return (
     <Box
