@@ -1,5 +1,7 @@
+import Login from "./pages/auth/Login";
+
 function App() {
-  return <h1>Enterprise SaaS CRM</h1>;
+  return <Login />;
 }
 
 export default App;
